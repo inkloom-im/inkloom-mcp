@@ -1,0 +1,58 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/v1/server-card.schema.json",
+  "name": "im.inkloom/mcp",
+  "version": "1.1.0",
+  "title": "Inkloom",
+  "description": "Remote MCP for Inkloom AI image and video generation with OAuth.",
+  "websiteUrl": "https://inkloom.im/mcp",
+  "repository": {
+    "url": "https://github.com/inkloom-im/inkloom-mcp",
+    "source": "github"
+  },
+  "icons": [
+    {
+      "src": "https://inkloom.im/web-app-manifest-512x512.png",
+      "mimeType": "image/png",
+      "sizes": ["512x512"]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://inkloom.im/api/mcp",
+      "supportedProtocolVersions": ["2025-06-18", "2025-03-26"]
+    }
+  ],
+  "serverInfo": {
+    "name": "Inkloom",
+    "version": "1.1.0"
+  },
+  "authentication": {
+    "required": true,
+    "schemes": ["oauth2"]
+  },
+  "tools": [
+    {
+      "name": "inkloom_list_models",
+      "description": "List active Inkloom generation models with their modes, adjustable output options, SKU dimensions, and credit pricing. Call this before quoting or creating a generation."
+    },
+    {
+      "name": "inkloom_quote_generation",
+      "description": "Price a generation request without creating it or spending credits. Returns the exact credit price and the user's balance."
+    },
+    {
+      "name": "inkloom_create_generation",
+      "description": "Start an image or video generation that spends the user's credits. Quote first and pass the accepted price as maxCredits. Returns immediately with a generation ID; poll inkloom_get_generation until it completes or fails."
+    },
+    {
+      "name": "inkloom_list_generations",
+      "description": "List generation tasks owned by the authenticated Inkloom user."
+    },
+    {
+      "name": "inkloom_get_generation",
+      "description": "Get one generation task owned by the authenticated Inkloom user, including output URLs once completed."
+    }
+  ],
+  "resources": [],
+  "prompts": []
+}
